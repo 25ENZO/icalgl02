@@ -186,6 +186,17 @@ function ecrireListe(data) {
   }
 }
 
+// Ecris un évenement "Libre" dans le fichier iCal
+function ecrireTempsLibre(dateDebut, dateFin, fileName) {
+    fs.appendFileSync(fileName + ".ics",
+        "BEGIN:VEVENT\n"+
+        "SUMMARY: Libre \n"+
+        "DTSTART:"+dateDebut+"\n"+
+        "DTEND:"+dateFin+"\n"+
+        "END:VEVENT\n");
+    
+}
+
 // Lit le fichier passe en argument dans la console
 function lire (nom,nb) {
 	if (nom.match(/\w+\.\w+ \w+\.\w+/)) {
@@ -219,6 +230,8 @@ function lire (nom,nb) {
 			break;
 			case 2: DetectIntervenant(data);
 			break;
+			case 5: complementaire(data);
+            break;
 		}
     });
   }
@@ -297,6 +310,101 @@ function union(planning1, planning2) {
 	ecrireEvents(dateDebut1, dateFin1, description1, summary1, "union");
 	ecrireEvents(dateDebut2, dateFin2, description2, summary2, "union");
 	ecrireFin();
+}
+
+function complementaire(planning) {
+                                             
+//on recupere les lignes sur lequelles sont indiquées les dates et les heures de differents évenements
+    
+     
+        
+                                             
+    var dateDebut = planning.match(/DTSTART:\d{8}T\d{6}/g);
+    var dateFin = planning.match(/DTEND:\d{8}T\d{6}/g);
+                                             
+                                             
+    //on en extrait les informations (dates & heures)
+    var debut = dateDebut;
+    var fin = dateFin;
+                                             
+    for(var i = 0; i<debut.length;i++){
+        debut[i] = dateDebut[i].match(/\d{8}T\d{6}/);
+        fin[i] = dateFin[i].match(/\d{8}T\d{6}/);
+    }
+                                             
+    //on recupere ici indépendamment l'année, le mois et le jour du commencement du premier évènement
+    var premiereDate = (''+dateDebut).slice(0,8);
+    var premiereDateAnnee = premiereDate.slice(0,4); //on recupère l'année sous la forme AAAA
+    var premiereDateMois = ''+(parseInt(premiereDate.slice(4,6))-1);//on recupère le mois sous la forme MM
+    var premiereDateJour = premiereDate.slice(6,8);//on recupère l'année sous la forme JJ
+                                             
+                                             
+    //on crée maintenant 2 variable date qui nous permettent de borner une semaine (Lundi & dimanche)
+    var date1 = new Date(premiereDateAnnee, premiereDateMois, premiereDateJour);
+    var date2 = new Date(premiereDateAnnee, premiereDateMois, premiereDateJour);
+    var jour = date1.getDay(); // dimanche = 0, lundi = 1, ..... , samedi = 6
+    jour--;
+    if(jour == -1) //on met dimanche = 6 pour plus de simplicité
+    jour = 6;
+                                             
+    //on cherche maintenant a obtenir les dates du lundi et dimanche de la semaine
+    var dayOfMonth = date1.getDate();
+                                             
+    date1.setDate(dayOfMonth - jour); //on obtient la date du lundi de la semaine
+    date2.setDate(dayOfMonth + 6-jour); //on obtient la date du dimanche de la semaine
+                                             
+                                             
+    //de nouveau, on extrait les differentes composantes d'une date (jour, mois, année)
+    var jourLundi, moisLundi, jourDimanche, moisDimanche;
+                                             
+    if(date1.getDate()<10){
+        jourLundi = '0'+date1.getDate();
+    }else{
+        jourLundi = ''+date1.getDate();
+    }
+                                             
+    if(date2.getDate()<10){
+        jourDimanche = '0'+date2.getDate();
+    }else{
+        jourDimanche = ''+date2.getDate();
+    }
+                                             
+    if(date1.getMonth<9){
+        moisLundi = '0'+(parseInt(date1.getMonth())+1);
+    }else{
+        moisLundi = ''+(parseInt(date1.getMonth())+1);
+    }
+                                             
+    if(date2.getMonth<9){
+        moisDimanche = '0'+(parseInt(date2.getMonth())+1);
+    }else{
+        moisDimanche = ''+(parseInt(date2.getMonth())+1);
+    }
+                                             
+    var anneeLundi = ''+(date1.getFullYear());
+    var anneeDimanche = ''+(date2.getFullYear());
+       
+    argumentEntree = 'complementaire';
+                                             
+    ecrireDebut();
+                                             
+    //on crée un évenement "Libre" depuis minuit du Lundi de la semaine
+                                             
+    ecrireTempsLibre(anneeLundi+moisLundi+jourLundi+'T000000', debut[0],argumentEntree);
+                                             
+    //on fait une boucle pour remplir toutes les zones vides
+    for(var i =0; i<fin.length-1;i++){
+         if((''+fin[i]) != (''+debut[i+1])){
+                ecrireTempsLibre(fin[i], debut[i+1],argumentEntree)
+         }
+    }
+                                             
+    //on finit en créant un évenement "Libre" de la fin du dernier évenement de la semaine, juqu'au dimanche, à 23h59m59s
+    ecrireTempsLibre(fin[fin.length-1], anneeDimanche+moisDimanche+jourDimanche+'T235959',argumentEntree);
+     ecrireFin();
+
+                                             
+                                             
 }
 
 // Permet d'écrire les événements relatifs à l'union ou l'intersection dans un fichier
@@ -539,7 +647,9 @@ function menu() {
 	"1 : Générer un planning d’intervention au format iCalendar \n (conversion csv -> iCal)\n\n"+
 	"2 : Générer un rapport d’intervention hebdomadaire (à partir d'un iCal)\n\n"+
 	"3 : Générer l'union (ajout) de deux plannings d'intervention (à partir de deux iCal)\n\n"+
-	"4 : Générer l'intersection (horaires communs) de deux plannings d'intervention (à partir de deux iCal)\n\n");
+	"4 : Générer l'intersection (horaires communs) de deux plannings d'intervention (à partir de deux iCal)\n\n"+
+    "5 : Générer le planning complémentaire d'un planning (à partir d'un iCal)\n\n"
+                );
 	rl.on('line', function (answer) {
 		switch (answer) {
 			case '1':
@@ -570,6 +680,13 @@ function menu() {
 				lire(arg,4);
 			});
 			break;
+			case '5':
+			console.log("Spec 5 : indiquer le nom d'un fichier à importer (ex : nom.ics)");
+			rl.on('line', function (arg) {
+			argumentEntree = arg.substr(0,arg.length-4);
+			lire(arg,5);
+			});
+          break;
 		}
 	});
 }
