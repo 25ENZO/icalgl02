@@ -3,7 +3,7 @@ _
 
 Le groupe AMDY est le commanditaire de cette application
 
-L'objectif est de générer des planning d'intervention au format .csv 
+Sa principale fonctionnalité est de générer des plannings d'interventions au format .csv 
 
 L'objectif étant de faciliter la manipulation de ces derniers en les comparants ou en listant les incompatibilités entre différents plannings
 _
