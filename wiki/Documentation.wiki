@@ -10,4 +10,5 @@ Ensuite il convient d'utiliser des fichiers au format CSV pour faire fonctionner
 - Organisation des ressources du projet
 
 Le coeur de l'application est le programme ical.js
+
 Les consignes sont résumées dans le fichier readme.txt
