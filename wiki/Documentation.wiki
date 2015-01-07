@@ -1,4 +1,4 @@
-- Présentation de la librairie
+- Présentation 
 
 
 - Utilisation 
@@ -11,7 +11,7 @@ Ensuite il suffit de choisir parmi les différents modules proposés.
 
 La majorité des modules necessitent un calendrier au format .ics
 
-Il existe cependant 1 module fonctionnant avec un calendrier au format .csv
+Il existe cependant 1 module nécessitant un calendrier au format .csv permettant de le transformer en .ics
 
 
 - Organisation des ressources du projet
@@ -20,6 +20,6 @@ Le cœur de l'application est le programme ical.js
 
 Les consignes sont résumées dans le fichier readme.txt
 
-Les 2 tests de base sont au format .ics
+Les 2 planning d'intervention sont au format .ics
 
 Un planning existant au format .csv
