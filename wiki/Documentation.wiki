@@ -8,7 +8,9 @@ Pour lancer le programme il faut taper dans l'invité de commande    l'instructi
 Ensuite il convient d'utiliser des fichiers au format CSV pour faire fonctionner les différents modules
 
 
+
 - Organisation des ressources du projet
+
 
 
 Le coeur de l'application est le programme ical.js
