@@ -3,16 +3,23 @@
 
 - Utilisation 
 
+Après avoir lancé l'invite de commande, il faut se placer dans le dossier icalgl02
+
 Pour lancer le programme il faut taper dans l'invité de commande    l'instruction "node ical.js".
 
-Ensuite il convient d'utiliser des fichiers au format CSV pour faire fonctionner les différents modules
+Ensuite il suffit de choisir parmi les différents modules proposés.
 
+La majorité des modules necessitent un calendrier au format .ics
+
+Il existe cependant 1 module fonctionnant avec un calendrier au format .csv
 
 
 - Organisation des ressources du projet
 
-
-
-Le coeur de l'application est le programme ical.js
+Le cœur de l'application est le programme ical.js
 
 Les consignes sont résumées dans le fichier readme.txt
+
+Les 2 tests de base sont au format .ics
+
+Un planning existant au format .csv
