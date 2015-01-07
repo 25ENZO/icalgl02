@@ -1,5 +1,8 @@
   Présentation 
+_
 
+L'objectif de cette application est de générer des planning d'intervention au format .csv 
+_
 
   Utilisation 
 _
