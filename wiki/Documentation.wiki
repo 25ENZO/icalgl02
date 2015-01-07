@@ -11,7 +11,7 @@ Ensuite il suffit de choisir parmi les différents modules proposés.
 
 La majorité des modules necessitent un calendrier au format .ics
 
-Il existe cependant 1 module nécessitant un calendrier au format .csv permettant de le transformer en .ics
+Il existe cependant 1 module nécessitant un calendrier au format .csv dans le but de le transformer en .ics
 
 
 - Organisation des ressources du projet
