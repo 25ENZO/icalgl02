@@ -1,5 +1,5 @@
 ﻿var fs        = require('fs');
-var myArgs    = process.argv.slice(1);
+
 var readline  = require('readline');
 
 var rl = readline.createInterface({
@@ -8,7 +8,6 @@ var rl = readline.createInterface({
 });
 
 var argumentEntree;
-var fichiersEntree;
 
 // creer la chaine de caractere du début de l'evenement
 function heureDebut(date,heure,minute){
@@ -44,8 +43,9 @@ function heureFin(date,heure,minute,duree){
 }
 
 // cree une liste contenant tours les evenements du jour 
-function creerEvenements(jour, dateJour, n, debut, heure, minute, date, duree, listeEvenements) {
-  // parcourir jour
+
+function creerEvenements(jour, n, debut, heure, minute, date, duree, listeEvenements) {
+    // parcourir jour
   for (i=0 ; i<jour.length ; i++) {
       // si non vide
       if (jour[i] != "vide" && jour[i] != "") {
@@ -92,7 +92,7 @@ function parcourirJour (jour, dateJour) {
   var duree           = 0;
   var listeEvenements = [];
 
-  listeEvenements = creerEvenements(jour, dateJour, n, debut, heure, minute, date, duree, listeEvenements);
+  listeEvenements = creerEvenements(jour, n, debut, heure, minute, date, duree, listeEvenements);
 
   ecrireListe(listeEvenements);
 }
@@ -593,9 +593,11 @@ function DetectIntervenant(data) {
 		});
 	
 	//Recuperer les valeurs distincts d un tableau  
-	var e,i;
-	var intervenant = intervenant.filter(function (e, i, intervenant) {
-	return intervenant.lastIndexOf(e) === i;
+
+
+
+    var intervenant = intervenant.filter(function (e, i, intervenant) {
+	    return intervenant.lastIndexOf(e) === i;
 	});
 	intervenant.sort();
 	
