@@ -1,6 +1,18 @@
-Le format du fichier CSV de base n'étant pas spécifié, nous avons pris l'exemple du sujet "Projet GL02 A14 – Sujet A" où chaque évènement entre points virgules correspond à 30mn.
-Exemple : vide;repas;vide; 
+**************** Gestionnaire AMDY ****************
 
-Pour lancer le programme, aucun argument n'est nécessaire ; il suffit de taper dans l'invite de commandes "node ical.js".
+# Description :
+- Gestionnaire de fichiers iCal et CSV pour l'association AMDY.
 
-Pour faire fonctionner le programme il convient donc d'utiliser un fichier .csv du même format que le fichier test fourni.
+# Guide d'utilisateur
+- node.js (windows) doit être installé.
+- Pour lancer le programme il suffit de lancer 'ical.js' depuis l'invite de commande : 'Node.js command prompt'.
+- Vous avez la possibilité entre plusieurs fonctions via le menu général du programme :
+   1. Génération d'un planning au format iCalendar depuis un fichier CSV
+   2. Génération d'un rapport d'intervention à partir d'un fichier iCalendar
+   3. Union de deux plannings (iCalendar)
+   4. Intersection de deux plannings avec les mêmes horraires (iCalendar)
+   5. Génération du complémentaire d'un planning (iCalendar)
+
+# Auteurs
+Chi Hoon LEE - Thibault NEULAT - Louis PALAYRET - Anthony PALMIGIANO
+(refactoring : Etienne JACQUOT - Minh Tim LE - Hamza OBEIDAT - Jérémie RAMPIN)
