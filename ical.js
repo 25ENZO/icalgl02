@@ -104,6 +104,53 @@ function tableauEvenementsJour (jour, x){
   }
 }
 
+
+function checkDate(argumentDate) {
+    var day = new Date();
+    var dd = '01';
+    var mm = day.getMonth() + 1;
+    var yyyy = day.getFullYear();
+
+
+    if (mm < 10)
+    {
+        mm = '0' + mm;
+    }
+
+
+    switch (argumentDate)
+    {
+        case "Mardi":
+            dd = '02';
+            break;
+
+        case "Mercredi":
+            dd = '03';
+            break;
+
+        case "Jeudi":
+            dd = '04';
+            break;
+
+        case "Vendredi":
+            dd = '05';
+            break;
+
+        case "Samedi":
+            dd = '06';
+            break;
+
+        case "Dimanche":
+            dd = '07';
+            break;
+
+    }
+
+
+    day = yyyy + '' + mm + '' + dd;
+    return day;
+}
+
 // Tous les évènements du lundi
 function faireSemaine(input) {  	
   var lundi     = [];
@@ -114,13 +161,13 @@ function faireSemaine(input) {
   var samedi    = [];
   var dimanche  = [];
 
-  var dateLundi     = input[0]; 
-  var dateMardi     = input[1];
-  var dateMercredi  = input[2];
-  var dateJeudi     = input[3];
-  var dateVendredi  = input[4];
-  var dateSamedi    = input[5];
-  var dateDimanche  = input[6];
+    var dateLundi     = checkDate(input[0]);
+    var dateMardi     = checkDate(input[1]);
+    var dateMercredi  = checkDate(input[2]);
+    var dateJeudi     = checkDate(input[3]);
+    var dateVendredi  = checkDate(input[4]);
+    var dateSamedi    = checkDate(input[5]);
+    var dateDimanche  = checkDate(input[6]);
   
   // on obtient un tableau par jour avec ses evenements
   tableauEvenementsJour(lundi,7);
