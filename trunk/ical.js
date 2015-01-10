@@ -500,10 +500,8 @@ function DetectIntervenant(data) {
 	
 	// enlever tous les cases sans valeurs
 	var intervenant = intervenant.filter(function(val) {
-	if(val == '' || val == NaN || val == undefined || val == null) {
-		return false;
-	}
-	return true;
+	return !(val == '' || isNaN(val) || val == undefined || val == null);
+
 	});
 	
 	for(var i = 0 ; i<result2.length;i++) {
@@ -523,10 +521,8 @@ function DetectIntervenant(data) {
 	
 	//enlever tous les cases vides et remettre les valeurs dans l ordre
 	var nbh = nbh.filter(function(val) {
-	if(val == '' || val == NaN || val == undefined || val == null) {
-		return false;
-	}
-	return true;
+	return !(val == '' || isNaN(val) || val == undefined || val == null);
+
 	});
 	
 	//Changement de minutes en heures + minutes pour le volume horaire
@@ -545,10 +541,8 @@ function DetectIntervenant(data) {
 	
 		var nbi = CompterNbInter(intervenant);
 		var nbi = nbi.filter(function(val){
-		if(val == '' || val == NaN || val == undefined || val == null) {
-			return false;
-		}
-		return true;
+		return !(val == '' || isNaN(val) || val == undefined || val == null);
+
 		});
 	
 	//Recuperer les valeurs distincts d un tableau  
