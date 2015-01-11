@@ -30,4 +30,4 @@ Le cœur de l'application est le programme ical.js
 
 Les consignes sont résumées dans le fichier readme.txt
 
-Un esemble de fichiers de test est à votre disposition dans le dossier "test/recette".
+Un ensemble de fichiers de test est à votre disposition dans le dossier "test/recette".
