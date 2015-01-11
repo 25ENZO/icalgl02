@@ -1,3 +1,4 @@
+#labels Phase-Support
   Présentation 
 _
 
@@ -29,6 +30,4 @@ Le cœur de l'application est le programme ical.js
 
 Les consignes sont résumées dans le fichier readme.txt
 
-Les 2 planning d'intervention sont au format .ics
-
-Un planning existant au format .csv
+Un esemble de fichiers de test est à votre disposition dans le dossier "test/recette".
